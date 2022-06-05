@@ -6,13 +6,12 @@ import pandas as pd
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
-from django.http import Http404, HttpResponse, JsonResponse
+from django.http import Http404
 from django.core.exceptions import ObjectDoesNotExist
 from .models import Clients, Bills, Products
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from .serializers import BillsSerializer, ClientsSerializer, RelationBillsSerializer, RelationClientsSerializer, RelationProductsSerializer
-from pathlib import Path
 # Create your views here.
 
 
@@ -58,8 +57,8 @@ class CRUDClients(APIView):
     """
     Create,Retrieve,Update or Delete an objects Clients
     """
-    # authentication_classes = [TokenAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get_object(self, pk):
         try:
@@ -102,8 +101,8 @@ class CRUDBills(APIView):
     """
     Create,Retrieve,Update or Delete an objects Clients
     """
-    # authentication_classes = [TokenAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get_object(self, pk):
         try:
@@ -141,8 +140,8 @@ class CRUDProducts(APIView):
     """
     Create,Retrieve,Update or Delete an objects Clients
     """
-    # authentication_classes = [TokenAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get_object(self, pk):
         try:

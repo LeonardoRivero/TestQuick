@@ -11,7 +11,7 @@ Una vez que esté pipxlisto en su sistema, continúe instalando Pipenv:
 ### Despues de instalar pipenv, dirijase al directorio donde se encuentra el archivo ` Pipfile ` y ejecute. De esta forma tendra activado el ambiente virtual del proyecto:
     $ pipenv install
 
-### Para correr el proyecto, dirijase al directorio donde se encuentra el archivo `manage.py `y ejecute (se adjunta archivo db.sqlite3):
+### Para iniciar el servidor el proyecto, dirijase al directorio donde se encuentra el archivo `manage.py `y ejecute el siguiente comando: 
 
     $ python manage.py runserver
 
@@ -39,9 +39,10 @@ Una vez que esté pipxlisto en su sistema, continúe instalando Pipenv:
 
 
 ## NOTA:
-- El archivo descargado del endpoint http://127.0.0.1:8000/api/up_down_csv/ por medio del metodo GET, serà descargado con el nombre `Bills.zip` en el directorio raiz del proyecto. Es necesario extraer dicho archivo para obtener el documento.csv
+- El archivo generado en el endpoint http://127.0.0.1:8000/api/up_down_csv/ por medio del metodo GET, serà descargado con el nombre `Bills.zip` en el directorio raiz del proyecto. Es necesario extraer dicho archivo para obtener el documento.csv
 - Para testear el proyecto, se adjunta thunder-collection_TestQuick.json de todos los requests elaborados para cada endpoint.
--Adicionalmente se crearon los test.py correspondientes a cada tabla del proyecto
+- Adicionalmente se crearon los test.py correspondientes a cada entidad del proyecto
+- Con el fin de validar los datos generados en los request de testeo se adjunta archivo db.sqlite3
 
 
 
