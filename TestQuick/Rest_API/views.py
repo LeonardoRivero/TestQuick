@@ -7,7 +7,9 @@ from django.http import Http404, HttpResponse, JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.serializers import serialize
 from .models import Clients, Bills, Products
-from .serializers import ClientsSerializer, RelationBillsSerializer, RelationClientsSerializer, RelationProductsSerializer
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
+from .serializers import BillsSerializer, ClientsSerializer, RelationBillsSerializer, RelationClientsSerializer, RelationProductsSerializer
 # Create your views here.
 
 
@@ -15,6 +17,8 @@ class CRUDClients(APIView):
     """
     Create,Retrieve,Update or Delete an objects Clients
     """
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get_object(self, pk):
         try:
@@ -57,6 +61,8 @@ class CRUDBills(APIView):
     """
     Create,Retrieve,Update or Delete an objects Clients
     """
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get_object(self, pk):
         try:
@@ -67,7 +73,7 @@ class CRUDBills(APIView):
     def get(self, request, pk=None, format=None):
         if pk:
             data = self.get_object(pk)
-            serializer = RelationBillsSerializer(data, many=True)
+            serializer = RelationBillsSerializer(data)
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
         else:
             data = Bills.objects.all()
@@ -75,7 +81,7 @@ class CRUDBills(APIView):
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
 
     def post(self, request, format=None):
-        serializer = RelationBillsSerializer(data=request.data)
+        serializer = BillsSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -94,6 +100,8 @@ class CRUDProducts(APIView):
     """
     Create,Retrieve,Update or Delete an objects Clients
     """
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get_object(self, pk):
         try:

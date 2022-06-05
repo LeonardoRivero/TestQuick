@@ -7,6 +7,7 @@ name = "pypi"
 django = "*"
 djangorestframework = "*"
 markdown = "*"
+dj-rest-auth = {extras = ["with_social"], version = "*"}
 
 [dev-packages]
 autopep8 = "*"

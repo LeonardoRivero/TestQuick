@@ -160,20 +160,20 @@ class ProductsTestCase(TestCase):
 
 class BillTestCase(TestCase):
     helper = Helpers()
+    clients = ClientTestCase()
+    products = ProductsTestCase()
 
     @classmethod
     def setUpTestData(self):
-        clients = ClientTestCase()
-        response_client = clients.setUpTestData()
-        products = ProductsTestCase()
-        response_product = products.setUpTestData()
+
+        response_client = self.clients.setUpTestData()
+        response_product = self.products.setUpTestData()
 
         for client in response_client:
             random_code = self.helper.random_code()
             nit = self.helper.random_document()
-            bill = Bills(client_id=client, company_name=f"Company {client.id}",
-                         nit=nit, code=random_code)
-            bill.save()
+            bill = Bills.objects.create(client_id=client, company_name=f"Company {random_code}",
+                                        nit=nit, code=random_code)
             bill.products.add(response_product[0], response_product[1])
 
     def setUp(self):
@@ -185,5 +185,35 @@ class BillTestCase(TestCase):
         print("Response as Json", response.json())
         self.assertEqual(response.status_code, status.HTTP_202_ACCEPTED)
         print("-"*50)
-#     def test_Exampl(self):
-#         print("sdfdsfsdfsdfds")
+
+    def test_get_single_bill(self, pk=3):
+        print(f"Get Bill with id={pk}")
+        response = self.client.get(f"/api/bill/{pk}/", kwargs={'pk': None}, content_type='application/json')
+        print("Response as Json", response.json())
+        self.assertEqual(response.status_code, status.HTTP_202_ACCEPTED)
+        print("-"*50)
+        return(response.json())
+
+    def test_create_bill(self):
+        pk = 1
+        response = self.client.get(f"/api/client/{pk}/", kwargs={'pk': None}, content_type='application/json')
+        client_response = response.json()
+        response = self.client.get(f"/api/products/all/", kwargs={'pk': None}, content_type='application/json')
+        products_response = response.json()
+
+        list_id_products = []
+        for product in products_response:
+            list_id_products.append(product["id"])
+
+        random_code = self.helper.random_code()
+        nit = self.helper.random_document()
+
+        self.payload = {"client_id": client_response["id"], "company_name": f"Company {random_code}", "nit": nit,
+                        "code": random_code, "products": list_id_products}
+
+        print("Creating Bill:")
+        response = self.client.post("/api/bills/all/", data=json.dumps(self.payload),
+                                    content_type='application/json')
+        print("Response as Json", response.json())
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        print("-"*50)
