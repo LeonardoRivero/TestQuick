@@ -16,16 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import TemplateView
-from .views import CRUDBills, CRUDClients, CRUDProducts
+from .views import CRUDBills, CRUDClients, CRUDProducts, CSV
 
-# template_patterns = [
-#     path('', TemplateView.as_view(template_name="patient_list.html")),
-#     path('patient/list/', TemplateView.as_view(template_name="patient_list.html"), name="list"),
-#     path('patient/create/', TemplateView.as_view(template_name="patient_create.html")),
-#     path('patient/<int:pk>/edit/', TemplateView.as_view(template_name="patient_update.html")),
-#     # path('camera/<int:pk>/delete/', TemplateView.as_view(template_name="camera_delete.html")),
-# ]
 urlpatterns = [
     path('api/clients/all/', csrf_exempt(CRUDClients.as_view())),
     path('api/client/<int:pk>/', csrf_exempt(CRUDClients.as_view())),
@@ -33,6 +25,6 @@ urlpatterns = [
     path('api/bill/<int:pk>/', csrf_exempt(CRUDBills.as_view())),
     path('api/products/all/', csrf_exempt(CRUDProducts.as_view())),
     path('api/product/<int:pk>/', csrf_exempt(CRUDProducts.as_view())),
+    path('api/up_down_csv/', csrf_exempt(CSV.as_view()))
 
-    # path('', include(template_patterns)),
 ]

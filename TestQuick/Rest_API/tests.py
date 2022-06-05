@@ -1,12 +1,11 @@
-import email
 import json
-from pydoc import Helper
-from xmlrpc import client
 from django.test import TestCase
 from .models import Bills, Clients, Products
 from rest_framework import status
 import random
 import string
+import pandas as pd
+import names
 # Create your tests here.
 
 
@@ -56,6 +55,20 @@ class ClientTestCase(TestCase):
         print("Response as Json", response.json())
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         print("-"*50)
+
+    def test_create_multiple_client(self):
+        list_products = []
+        for i in range(1, 100):
+            document = self.helper.random_document()
+            email_random = self.helper.random_email()
+            first_name = names.get_first_name()
+            last_name = names.get_last_name()
+            clients = {"document": document, "first_name": first_name,
+                       "last_name": last_name, "email": email_random}
+            list_products.append(clients)
+        df = pd.DataFrame(list_products)
+        compression_opts = dict(method='zip', archive_name='MultipleClients.csv')
+        df.to_csv('BulkClients.zip', index=False, compression=compression_opts)
 
     def test_get_single_client(self, pk=1):
         print(f"Get Client with id={pk}")

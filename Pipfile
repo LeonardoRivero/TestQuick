@@ -8,6 +8,8 @@ django = "*"
 djangorestframework = "*"
 markdown = "*"
 dj-rest-auth = {extras = ["with_social"], version = "*"}
+pandas = "*"
+names = "*"
 
 [dev-packages]
 autopep8 = "*"
