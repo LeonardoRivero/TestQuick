@@ -36,6 +36,8 @@ Una vez que esté pipxlisto en su sistema, continúe instalando Pipenv:
 | http://127.0.0.1:8000/api/product/<int:pk>/|DELETE|Elimina producto por medio de PK|
 | http://127.0.0.1:8000/api/up_down_csv/|GET|Descarga archivo CSV con resumen de clientes y facturas|
 | http://127.0.0.1:8000/api/up_down_csv/|POST|Cargue archivo CSV para creacion de clientes|
+| http://127.0.0.1:8000/api/register/|POST|Registra un usuario nuevo y retorna JW token de autenticaciòn|
+| http://127.0.0.1:8000/api/login/|POST|Acceso al usuario por medio de JW token|
 
 
 ## NOTA:
@@ -43,6 +45,7 @@ Una vez que esté pipxlisto en su sistema, continúe instalando Pipenv:
 - Para testear el proyecto, se adjunta thunder-collection_TestQuick.json de todos los requests elaborados para cada endpoint.
 - Adicionalmente se crearon los test.py correspondientes a cada entidad del proyecto
 - Con el fin de validar los datos generados en los request de testeo se adjunta archivo db.sqlite3
+- Para acceder a cada endpoint es necesario que el usuario se haya creado previamente y se encuentre autenticado de manera correcta; enviando el JW Token en el cabecero de la solicitud HTTP.
 
 
 
