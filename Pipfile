@@ -10,6 +10,8 @@ markdown = "*"
 dj-rest-auth = {extras = ["with_social"], version = "*"}
 pandas = "*"
 names = "*"
+faker = "*"
+faker-commerce = "*"
 
 [dev-packages]
 autopep8 = "*"

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "fa832484dd40ac8689c1d2e4278f2d695a2723fa9a9dede20849708fe32a6cc8"
+            "sha256": "10b85db40765a01a5161f80481534971c3a0e2472959e88a5770f02ff61ec86f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -183,6 +183,22 @@
             ],
             "index": "pypi",
             "version": "==3.13.1"
+        },
+        "faker": {
+            "hashes": [
+                "sha256:1f6478011ac8a8273e0f9cd6da03d9ea6391c622db340eca015339512e9cde29",
+                "sha256:5cbb89fc6a16793b2bd98252c03a86098c7426beab0a20382709a815651b8804"
+            ],
+            "index": "pypi",
+            "version": "==13.12.0"
+        },
+        "faker-commerce": {
+            "hashes": [
+                "sha256:6eb0a5e7e9dcded86edf96980c56af63bc12f56c3ab860f88eb99a5b53c14073",
+                "sha256:f76bfcac5ba17c68e15fd6d077d98fdff5087d65d015246db99d1b17efe4a3bd"
+            ],
+            "index": "pypi",
+            "version": "==1.0.3"
         },
         "idna": {
             "hashes": [
